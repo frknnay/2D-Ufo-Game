@@ -26,13 +26,21 @@ func _fixed_process(delta):
 	btn_left = Input.is_action_pressed("btn_left")
 	btn_right = Input.is_action_pressed("btn_right")
 	
-	if btn_left:
+	if btn_up and btn_left:
+		move(-speed_x, -speed_y, acceleration, delta)
+	elif btn_up and btn_right:
+		move(speed_x, -speed_y, acceleration, delta)
+	elif btn_down and btn_left:
+		move(-speed_x, speed_y, acceleration, delta)
+	elif btn_down and btn_right:
+		move(speed_x, speed_y, acceleration, delta)
+	elif btn_left:
 		move(-speed_x, 0, acceleration, delta)
-	if btn_right:
+	elif btn_right:
 		move(speed_x, 0, acceleration, delta)
-	if btn_up:
+	elif btn_up:
 		move(0, -speed_y, acceleration, delta)
-	if btn_down:
+	elif btn_down:
 		move(0, speed_y, acceleration, delta)
-	#else:
-		#move(0, acceleration, delta)
+	else:
+		move(0, 0, acceleration, delta)
